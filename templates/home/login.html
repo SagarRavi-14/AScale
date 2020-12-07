@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Login Page{% endblock title %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+{% block body %}
+{% load socialaccount %} 
+{% providers_media_js %}
+<div class="jumbotron container my-2">
+  <h4 style="text-align:center;" class="display-4 mx-auto">Login</h4>
+    <div class="card w-50 mx-auto">
+    <div class="card-body">
+       
+          <a  href="{% provider_login_url "facebook" method="js_sdk" %}" class="btn btn-primary my-4 btn-block btn-lg"><i class="fab fa-facebook fa-1x mx-2"></i><span class="my-auto"> Login With Facebook</span></a>
+          <a  href="{% provider_login_url "google" method="oauth2" %}" class="btn btn-primary btn-danger my-4 btn-block btn-lg"><i class="fab fa-google fa-1x mx-2 "></i><span class="my-auto"> Login With Google</span></a></a>
+      
+    </div>
+    </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+{% comment %} <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '397291714922361',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v9.0'
+        });
+      };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> {% endcomment %}
+ <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{397291714922361}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{v9.0}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script> 
+{% endblock js %}
