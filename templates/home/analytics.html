@@ -31,7 +31,7 @@
 
 {% comment %} Graph Structure {% endcomment %}
 
-<div class="container jumbotron my-3" style="background-color: #fffbc7"> 
+<div class="container  my-3" style="background-color: #fffbc7"> 
   <div id="container" style="width: 75%">
     <canvas id="pie-chart"></canvas>
   </div>
@@ -76,7 +76,9 @@
                           labelString: "Number of Queries",
                         },
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stepSize:1,
+                    
                     }
                 }],
                  xAxes: [

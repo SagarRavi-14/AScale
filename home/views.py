@@ -32,7 +32,7 @@ def contact(request):
         r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=captchaData)
         response = json.loads(r.text)
         verify = response['success']
-        print(contact)
+        
 
         if verify:
             contact.save()
@@ -42,21 +42,15 @@ def contact(request):
     return render(request,'home/contact.html')
     
 def analytics(request,):
-    allitem = Contact.objects.all()
-    alldate=[]
-    for i in allitem:
-        alldate.append(i.time_stamp)
     if request.method=='POST':
         startdate = request.POST['startdate']
         enddate = request.POST['enddate']
         if enddate<startdate:
             messages.error(request,"Please select the date properly")
             return redirect('analytics')
-        print(enddate,startdate)
+        
         item = Contact.objects.filter(time_stamp__range=[startdate,enddate])
         d={}
-        
-       
         for i in item:
             a = str((i.time_stamp))
             d[a]=d.get(a,0)+1
